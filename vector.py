@@ -255,6 +255,10 @@ class Vector(object):
         """
         Return the unit vector
         """
+
+        if not self.magnitude():
+            return Vector(0, 0)
+
         l = 1 / self.magnitude()
         return self.scale(l)
 
@@ -299,6 +303,7 @@ class Vector(object):
 
     def extend(self, value):
         self.elements.extend(value)
+
 
 class DifferentLengthVectors(Exception):
     def __init__(self, vec1, vec2):
