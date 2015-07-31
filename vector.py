@@ -15,8 +15,6 @@ class Vector(object):
 
         self.elements = list(elements)
 
-        # self.index = 0      # Iteration index start
-
     # FOLLOWING FUNCTION DEFINE BUILT IN OPERATIONS ON VECTORS
     def __iter__(self):
         """
@@ -24,17 +22,6 @@ class Vector(object):
         """
         self.index = 0
         return iter(self.elements)
-
-    # def next(self):
-    #     """
-    #     Access next item
-    #     """
-    #     if self.index == len(self.elements):
-    #         raise StopIteration
-    #
-    #     self.index += 1
-    #
-    #     return self.elements[self.index - 1]
 
     def __str__(self):
         """
@@ -245,11 +232,15 @@ class Vector(object):
 
         return sum([self[i]*vec2[i] for i in range(len(self))])
 
-    def magnitude(self):
+    def magnitude(self, set=None):
         """
         Return the length of the vector. Not # of elements
         """
-        return (self.dot(self))**0.5
+
+        if set is not None:
+            self.normalize().scale(set)
+        else:
+            return (self.dot(self))**0.5
 
     def normalize(self):
         """
