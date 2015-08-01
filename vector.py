@@ -253,6 +253,15 @@ class Vector(object):
         l = 1 / self.magnitude()
         return self.scale(l)
 
+    def dist_squared(self, vec2):
+        """
+        Return the distance to another vector
+        """
+        if type(vec2) != Vector:
+            raise TypeError("Not a vector")
+
+        return (self - vec2) * (self - vec2)
+
     def dist(self, vec2):
         """
         Return the distance to another vector
